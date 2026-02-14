@@ -100,31 +100,42 @@ if uploaded_file is not None:
         mcc = matthews_corrcoef(y_test, y_pred)
         
         # Calculate AUC score (for binary and multi-class)
+        auc = None
         try:
+            n_classes = len(np.unique(y_test))
+            
             if hasattr(model, 'predict_proba'):
                 y_proba = model.predict_proba(X_test)
-                auc = roc_auc_score(y_test, y_proba, multi_class='ovr', average='weighted')
-            else:
-                # For models without predict_proba, use decision_function if available
-                if hasattr(model, 'decision_function'):
-                    y_scores = model.decision_function(X_test)
-                    auc = roc_auc_score(y_test, y_scores, multi_class='ovr', average='weighted')
+                if n_classes == 2:
+                    # Binary classification: use probability of positive class
+                    auc = roc_auc_score(y_test, y_proba[:, 1])
                 else:
-                    auc = None
+                    # Multi-class classification
+                    auc = roc_auc_score(y_test, y_proba, multi_class='ovr', average='weighted', labels=np.unique(y_test))
+            elif hasattr(model, 'decision_function'):
+                # For models like SVM that have decision_function
+                y_scores = model.decision_function(X_test)
+                if n_classes == 2:
+                    auc = roc_auc_score(y_test, y_scores)
+                else:
+                    auc = roc_auc_score(y_test, y_scores, multi_class='ovr', average='weighted')
+            else:
+                auc = None
         except Exception as e:
+            print(f"AUC Calculation Error: {str(e)}")
             auc = None
 
         st.subheader("Evaluation Metrics")
         
         # Display metrics in a formatted table
         metrics_data = {
-            "Metric": ["Accuracy", "AUC Score", "Precision", "Recall", "F1 Score", "MCC Score"],
+            "Metric": ["Accuracy", "Precision", "Recall", "F1 Score", "AUC Score", "MCC Score"],
             "Value": [
                 f"{accuracy:.4f}",
-                f"{auc:.4f}" if auc is not None else "N/A",
                 f"{precision:.4f}",
                 f"{recall:.4f}",
                 f"{f1:.4f}",
+                f"{auc:.4f}" if auc is not None else "N/A",
                 f"{mcc:.4f}"
             ]
         }
@@ -149,6 +160,8 @@ if uploaded_file is not None:
         with col6:
             if auc is not None:
                 st.metric("AUC Score", f"{auc:.4f}")
+            else:
+                st.metric("AUC Score", "N/A")
 
         # ========== D. Confusion Matrix ==========
         st.subheader("Confusion Matrix")
