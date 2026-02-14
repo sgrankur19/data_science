@@ -9,6 +9,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
+from sklearn.preprocessing import LabelEncoder
 
 st.title("Machine Learning Model Deployment App")
 
@@ -26,6 +27,17 @@ if uploaded_file is not None:
 
     X = data.drop(columns=[target_column])
     y = data[target_column]
+
+    # Validate and convert target column for classification
+    # Remove rows with NaN values in target
+    valid_mask = y.notna()
+    X = X[valid_mask]
+    y = y[valid_mask]
+
+    # Convert to numeric if not already
+    if y.dtype == 'object' or y.dtype == 'string':
+        le = LabelEncoder()
+        y = pd.Series(le.fit_transform(y), index=y.index)
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
