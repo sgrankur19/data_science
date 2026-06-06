@@ -1,0 +1,52 @@
+=== Route Optimizer using Local Beam Search ===
+Beam width (k): 2
+Start state: (0, 0)
+Goal state: (4, 4)
+
+Execution Flow:
+Iteration 0:
+  Beam 1: Position=(0, 0), Heuristic=8, Traversal Cost=0, f(n)=8, Path=[(0, 0)]
+
+Iteration 1:
+  Beam 1: Position=(0, 1), Heuristic=7, Traversal Cost=1, f(n)=8, Path=[(0, 0), (0, 1)]
+  Beam 2: Position=(1, 0), Heuristic=7, Traversal Cost=1, f(n)=8, Path=[(0, 0), (1, 0)]
+
+Iteration 2:
+  Beam 1: Position=(2, 0), Heuristic=6, Traversal Cost=2, f(n)=8, Path=[(0, 0), (1, 0), (2, 0)]
+  Beam 2: Position=(0, 2), Heuristic=6, Traversal Cost=4, f(n)=10, Path=[(0, 0), (0, 1), (0, 2)]
+
+Iteration 3:
+  Beam 1: Position=(1, 2), Heuristic=5, Traversal Cost=5, f(n)=10, Path=[(0, 0), (0, 1), (0, 2), (1, 2)]
+  Beam 2: Position=(3, 0), Heuristic=5, Traversal Cost=5, f(n)=10, Path=[(0, 0), (1, 0), (2, 0), (3, 0)]
+
+Iteration 4:
+  Beam 1: Position=(2, 2), Heuristic=4, Traversal Cost=6, f(n)=10, Path=[(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)]
+  Beam 2: Position=(3, 1), Heuristic=4, Traversal Cost=6, f(n)=10, Path=[(0, 0), (1, 0), (2, 0), (3, 0), (3, 1)]
+
+Iteration 5:
+  Beam 1: Position=(2, 3), Heuristic=3, Traversal Cost=7, f(n)=10, Path=[(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3)]
+  Beam 2: Position=(4, 1), Heuristic=3, Traversal Cost=7, f(n)=10, Path=[(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1)]
+
+Iteration 6:
+  Beam 1: Position=(2, 4), Heuristic=2, Traversal Cost=8, f(n)=10, Path=[(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3), (2, 4)]
+  Beam 2: Position=(4, 2), Heuristic=2, Traversal Cost=8, f(n)=10, Path=[(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), (4, 2)]
+
+Iteration 7:
+  Beam 1: Position=(3, 4), Heuristic=1, Traversal Cost=9, f(n)=10, Path=[(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3), (2, 4), (3, 4)]
+  Beam 2: Position=(4, 3), Heuristic=1, Traversal Cost=11, f(n)=12, Path=[(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), (4, 2), (4, 3)]
+
+Iteration 8:
+  Beam 1: Position=(4, 4), Heuristic=0, Traversal Cost=10, f(n)=10, Path=[(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3), (2, 4), (3, 4), (4, 4)]
+
+Final Result:
+Goal reached at: (4, 4)
+Final path: [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3), (2, 4), (3, 4), (4, 4)]
+Total path cost: 8
+Total optimized traversal cost: 10
+
+Path on Grid:
+S * * X .
+. X * C .
+. X * * *
+C . X X *
+. . . C G
