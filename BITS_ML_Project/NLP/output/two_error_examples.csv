@@ -1,0 +1,3 @@
+row_id,question,true_answer,predicted_answer,exact_match,token_f1,context_was_truncated
+12157,how long did yuri gagarin orbit the earth in the spacecraft?,108 minutes,the the the the the the the the the the,0,0.0,1
+7666,what famous singer declined an offer to be a judge on american idol after having been a mentor?,elton john,the the the the the the the the the the,0,0.0,1

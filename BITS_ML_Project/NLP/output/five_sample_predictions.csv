@@ -1,0 +1,6 @@
+row_id,question,true_answer,predicted_answer,exact_match,token_f1,context_was_truncated
+2221,which dynasty became ruler of tibet?,the phagmodrupa dynasty,the the the the the the the the the the,0,0.15384615384615383,0
+9675,which two figures clashed over leadership of the congo in 1997?,lissouba and sassou,the the the the the the the the the the,0,0.0,0
+878,how many grammy awards did crazy in love get?,earned two grammy awards,the the the the the the the the the the,0,0.0,1
+8115,offerings left at the muthappan temple shrine take on what form?,bronze dog figurines,the the the the the the the the the the,0,0.0,0
+7886,in addition to interpreting body language and verbal commands dogs can also interpret what two other things?,gesturing and pointing,the the the the the the the the the the,0,0.0,0
