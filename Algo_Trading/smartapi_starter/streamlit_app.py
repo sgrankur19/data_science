@@ -25,9 +25,17 @@ with st.sidebar:
         "Reliance": "NSE:RELIANCE-EQ",
         "HDFC Bank": "NSE:HDFCBANK-EQ",
         "ICICI Bank": "NSE:ICICIBANK-EQ",
+        "IRFC": "NSE:IRFC-EQ",
+        "SBI": "NSE:SBIN-EQ",
+        "ITC": "NSE:ITC-EQ",
+        "LT": "NSE:LT-EQ",
+        "IRCTC": "NSE:IRCTC-EQ",
+        "BPCL": "NSE:BPCL-EQ",
+        "NSLNISP": "NSE:NSLNISP-EQ",
+        "TATASTEEL": "NSE:TATASTEEL-EQ",
     }
     selected_stock = st.selectbox("Choose a stock", ["Custom", *list(stock_options.keys())], index=0)
-    custom_symbol = st.text_input("Or enter symbol manually", value="NSE:INFY-EQ")
+    custom_symbol = st.text_input("Or enter symbol manually", value="NSE:IRFC-EQ")
     symbol = stock_options.get(selected_stock, custom_symbol) if selected_stock != "Custom" else custom_symbol
     refresh = st.button("Refresh signal")
 
