@@ -1,0 +1,12 @@
+Builds the FYERS login URL
+
+cd /Users/ankur/Documents/GitHub/data_science/Algo_Trading/smartapi_starter
+. .venv/bin/activate
+python generate_auth_url.py
+
+-----------------------------------------------------------------------------------
+Streamlit
+
+https://localhost:8501
+
+-----------------------------------------------------------------------------------

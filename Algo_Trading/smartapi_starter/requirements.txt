@@ -1,0 +1,7 @@
+fyers-apiv3
+python-dotenv
+pandas
+numpy
+logzero
+websocket-client
+streamlit
